@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IS-431: Concept Generation &amp; Selection — Height Adjustment</title>
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="stylesheet" href="../../../index.css">
+  <link rel="stylesheet" href="../../../components/table-of-content/table-of-content.css">
+  <script type="module" src="../../../components/image/image-component.js"></script>
+  <link rel="stylesheet" href="../../../components/scroll-to-top/scroll-to-top.css">
+  <script src="../../../components/scroll-to-top/scroll-to-top.js"></script>
+  <style>
+    .page-nav-row {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 32px;
+    }
+  </style>
+  <script src="/components/report-nav/report-nav.js" defer></script>
+</head>
+<body>
+  <div class="content">
+    <a href="../height-adjustment.html" class="back-btn">
+      <sl-button variant="default" size="medium">
+        <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+        Back to Height Adjustment
+      </sl-button>
+    </a>
+    <br>
+
+    <h2>Concept Generation &amp; Selection</h2>
+    <p>
+      This page documents the three height-adjustment concepts evaluated
+      for BoxBunny to satisfy system-level requirement
+      <strong>RM-5 (Height Adjustability)</strong>, the rejection rationale
+      for each alternative, and the selection of the final
+      <strong>manual screw jack with vertical linear guides</strong>
+      architecture.
+    </p>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 1. DESIGN CONSTRAINTS                                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Design Constraints</h3>
+      <p>
+        The height adjustment system must vary the torso/head height by
+        approximately <strong>300–400 mm</strong> to accommodate different
+        user heights, while:
+      </p>
+      <ul>
+        <li>Carrying the <strong>axial load</strong> of the upper structure (~20–25 kg including arms and padding)</li>
+        <li>Resisting <strong>lateral forces and overturning moments</strong> from punches</li>
+        <li>Remaining <strong>stiff and "non-bouncy"</strong> during training — once set, the height should not oscillate</li>
+        <li>Being <strong>safe and simple</strong> for users to adjust occasionally (not continuously during a round)</li>
+        <li>Fitting within the available <strong>vertical envelope</strong> above the linear stage</li>
+      </ul>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 2. CONCEPT #1: OFFICE CHAIR                           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Concept #1: Office Chair Mechanism + Vertical Linear Guide</h3>
+      <p>
+        The first concept adapted the <strong>office chair mechanism</strong>:
+        a gas lift cylinder to carry the axial load, combined with vertical
+        linear guides at the back to resist lateral punching forces.
+      </p>
+
+      <image-component
+        tag="image"
+        source="../../../assets/report appendix b/17-height-concept1.png"
+        subtitle="Figure: Required components and integration drawing for Concept #1 (office chair mechanism).">
+      </image-component>
+
+      <h4>Advantages</h4>
+      <ul>
+        <li>Gas lifts are <strong>readily available and compact</strong></li>
+        <li>Can carry the <strong>static axial load</strong> of the robot mass</li>
+        <li>Vertical linear guides at the back can handle <strong>lateral loads and overturning moments</strong></li>
+      </ul>
+
+      <h4>Rejection Rationale</h4>
+      <ul>
+        <li>
+          Gas cylinders are inherently <strong>compliant</strong> — they
+          behave like a spring/damper. Under repeated punches, this leads
+          to <strong>vertical "bouncing"</strong> of the torso, which
+          feels unrealistic and reduces strike rigidity.
+        </li>
+        <li>
+          The internal gas spring force varies with stroke; stiffness is
+          <strong>not easily tuned</strong> for the specific mass and
+          dynamic loads.
+        </li>
+        <li>
+          Office-chair gas lifts are designed for <strong>human seating
+          comfort</strong>, not for resisting repeated impact loads at
+          an elevated lever arm.
+        </li>
+      </ul>
+      <p>
+        <strong>Conclusion:</strong> Insufficient vertical stiffness —
+        the gas lift introduces unwanted bounce under impact.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 3. CONCEPT #2: ELECTRIC GAS STRUT                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Concept #2: Electric Gas Strut + Motorised Vertical Linear Guide</h3>
+      <p>
+        The second concept combined an <strong>electrically actuated
+        mechanism</strong> for height control with a gas strut at the
+        bottom to assist in carrying axial load:
+      </p>
+      <ul>
+        <li>A <strong>motorised drive</strong> (screw or belt) to move the upper carriage along vertical linear guides</li>
+        <li>A <strong>gas strut</strong> mounted beneath to partially support the robot's weight, reducing motor torque</li>
+      </ul>
+
+      <image-component
+        tag="image"
+        source="../../../assets/report appendix b/18-height-concept2.png"
+        subtitle="Figure: Required components and integration drawing for Concept #2 (electric gas strut + motorised guide).">
+      </image-component>
+
+      <h4>Advantages</h4>
+      <ul>
+        <li>Allows <strong>push-button height adjustment</strong>, potentially even mid-session</li>
+        <li>The gas strut can reduce motor torque by <strong>counterbalancing</strong> part of the robot's weight</li>
+        <li>Vertical linear guides again provide <strong>lateral and moment support</strong></li>
+      </ul>
+
+      <h4>Rejection Rationale</h4>
+      <ul>
+        <li>
+          Mechanically and electrically <strong>complex</strong>:
+          coordinating motor drive, gas strut support, and guide loads
+          is non-trivial.
+        </li>
+        <li>
+          Multiple elements share the load path (motor, screw/drive,
+          gas strut, guides), making <strong>stiffness and reliability
+          harder to predict</strong>.
+        </li>
+        <li>
+          For an application where height is adjusted <strong>occasionally</strong>
+          (between users, not continuously), the added complexity and cost
+          of powered adjustment is not justified.
+        </li>
+      </ul>
+      <p>
+        <strong>Conclusion:</strong> Unnecessary complexity — high cost
+        for an infrequent adjustment.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 4. CONCEPT #3: SCREW JACK (SELECTED)                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Concept #3: Manual Screw Jack + Vertical Linear Guides (Selected)</h3>
+      <p>
+        The final concept uses a <strong>manual screw jack</strong> mounted
+        on top of the linear stage, combined with <strong>vertical linear
+        rails</strong> as primary guides:
+      </p>
+      <ul>
+        <li>The <strong>screw jack</strong> carries the axial load and provides precise height adjustment</li>
+        <li>Two <strong>vertical linear rails</strong> (each with multiple long blocks) carry lateral forces and overturning moments from punches</li>
+      </ul>
+
+      <image-component
+        tag="image"
+        source="../../../assets/Lower_mechanism/8height adjustment - cad overview.png"
+        subtitle="Figure: (a) CAD overview of height adjustment component; (b) focused CAD of screw jack and vertical linear guides.">
+      </image-component>
+
+      <h4>Why This Concept Was Selected</h4>
+      <table style="width:100%; border-collapse:collapse; margin:16px 0;">
+        <thead>
+          <tr style="background:#f0f0f0;">
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Property</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Benefit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>High axial stiffness</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Screw jacks are designed for heavy-duty industrial applications; minimal vertical compliance</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Self-locking</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Non-backdrivable screw — height does not drift or bounce under impacts; no extra brake required</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Simple load path</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Axial loads go directly through the screw jack; lateral loads go through the rails → easier to analyse</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Manual but ergonomic</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Acceptable because height changes occur between users/rounds, not continuously</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Robust and maintainable</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Standard industrial components (jack + linear guides) with proven reliability</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Trade-offs</h4>
+      <ul>
+        <li>Requires <strong>manual effort</strong> to adjust height; not as convenient as push-button systems</li>
+        <li>Adjustment speed is slower than an electric actuator, though still acceptable for occasional use</li>
+      </ul>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 5. EVOLUTION TO TELESCOPIC COLUMN                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Evolution to Custom Telescopic Column</h3>
+      <p>
+        Although Concept #3 established the correct engineering principle
+        (screw jack for axial load, separate guides for lateral loads),
+        the original implementation using two rear-mounted linear rails
+        introduced too many precision-mounted components and tolerance
+        sensitivity. The design evolved toward a
+        <strong>custom telescopic column</strong> that consolidates the
+        guiding function into a single structural unit — documented further
+        in the <a href="lift-structure-separation.html">Lift vs Structure
+        Separation</a> and
+        <a href="structural-layout.html">Structural Layout &amp;
+        Fabrication</a> pages.
+      </p>
+      <p>
+        Commercial off-the-shelf telescopic columns were also considered
+        but rejected because their side-load capability under boxing
+        disturbances was uncertain and vendor specifications did not
+        address impact-type loading.
+      </p>
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="page-nav-row">
+<div></div>
+      <a href="calculations-sizing.html">
+        <sl-button variant="default" size="medium">
+          Next: Calculations & Sizing
+          <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+        </sl-button>
+      </a>
+    </div>
+  </div>
+
+  <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
+    <sl-icon name="arrow-up" label="Scroll to top"></sl-icon>
+  </sl-button>
+</body>
+</html>

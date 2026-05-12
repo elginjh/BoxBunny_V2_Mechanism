@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 500" style="background-color: #ffffff; font-family: system-ui, -apple-system, sans-serif;">
+  <defs>
+    <style>
+      .bg-base { fill: #f3f4f6; stroke: #9ca3af; stroke-width: 2px; rx: 4px; }
+      .bg-base-dark { fill: #e5e7eb; stroke: #6b7280; stroke-width: 2px; rx: 4px; }
+      .bg-lateral { fill: #fce4ec; stroke: #ef4444; stroke-width: 2px; rx: 4px; }
+      .bg-vertical { fill: #e1f5fe; stroke: #3b82f6; stroke-width: 2px; rx: 4px; }
+      .bg-ground-lat { fill: #fca5a5; stroke: #b91c1c; stroke-width: 2px; rx: 4px; }
+      .bg-ground-vert { fill: #93c5fd; stroke: #1d4ed8; stroke-width: 2px; rx: 4px; }
+      
+      .txt-main { font-size: 14px; font-weight: 600; fill: #374151; text-anchor: middle; dominant-baseline: middle; }
+      .txt-small { font-size: 11px; font-weight: normal; fill: #374151; text-anchor: middle; dominant-baseline: middle; }
+      
+      .txt-red { fill: #ef4444; font-weight: 700; font-size: 15px; }
+      .txt-blue { fill: #3b82f6; font-weight: 700; font-size: 15px; }
+      
+      .arrow { fill: none; stroke-width: 2.5px; }
+      .arrow-red { stroke: #ef4444; }
+      .arrow-blue { stroke: #3b82f6; }
+    </style>
+    <marker id="head-red" orient="auto" markerWidth="6" markerHeight="8" refX="5.5" refY="4">
+      <path d="M0,0 V8 L6,4 Z" fill="#ef4444" />
+    </marker>
+    <marker id="head-blue" orient="auto" markerWidth="6" markerHeight="8" refX="5.5" refY="4">
+      <path d="M0,0 V8 L6,4 Z" fill="#3b82f6" />
+    </marker>
+  </defs>
+
+  <!-- External Forces -->
+  <text x="150" y="45" class="txt-red">F<tspan dy="4" font-size="11">punch</tspan></text>
+  <path d="M 195 40 L 245 40" class="arrow arrow-red" marker-end="url(#head-red)" />
+
+  <text x="320" y="20" class="txt-blue" text-anchor="middle">F<tspan dy="4" font-size="11">axial</tspan></text>
+  <path d="M 320 30 L 320 60" class="arrow arrow-blue" marker-end="url(#head-blue)" />
+
+  <text x="475" y="45" class="txt-red">M<tspan dy="4" font-size="11">overturning</tspan></text>
+  <path d="M 435 50 C 435 20, 465 20, 465 50" class="arrow arrow-red" marker-end="url(#head-red)" />
+
+  <!-- Top Junction Blocks -->
+  <rect x="170" y="70" width="300" height="50" class="bg-base" />
+  <text x="320" y="95" class="txt-main">Upper Robot Body</text>
+
+  <rect x="170" y="125" width="300" height="50" class="bg-base-dark" />
+  <text x="320" y="150" class="txt-main">8080 Inner Tube</text>
+
+  <!-- Load Path Labels -->
+  <text x="240" y="200" class="txt-red" text-anchor="middle">Lateral Disturbance Path</text>
+  <text x="400" y="200" class="txt-blue" text-anchor="middle">Vertical Lifting Path</text>
+
+  <!-- Left Column (Lateral Path) -->
+  <rect x="165" y="215" width="150" height="50" class="bg-lateral" />
+  <text x="240" y="240" class="txt-main">Delrin Wear Pads</text>
+
+  <rect x="165" y="270" width="150" height="50" class="bg-lateral" />
+  <text x="240" y="287" class="txt-main">Outer Welded</text>
+  <text x="240" y="303" class="txt-main">Lift Tube</text>
+
+  <rect x="165" y="325" width="150" height="50" class="bg-lateral" />
+  <text x="240" y="342" class="txt-main">Welded Plate &amp;</text>
+  <text x="240" y="358" class="txt-main">Structure</text>
+
+  <rect x="165" y="380" width="150" height="50" class="bg-ground-lat" />
+  <text x="240" y="397" class="txt-main" fill="#7f1d1d">Robot Base</text>
+  <text x="240" y="413" class="txt-small" fill="#7f1d1d">(Ground Reaction)</text>
+
+  <!-- Right Column (Vertical Path) -->
+  <rect x="325" y="215" width="150" height="50" class="bg-vertical" />
+  <text x="400" y="240" class="txt-main">Screw Jack Mount</text>
+
+  <rect x="325" y="270" width="150" height="50" class="bg-vertical" />
+  <text x="400" y="295" class="txt-main">Travelling Nut</text>
+
+  <rect x="325" y="325" width="150" height="50" class="bg-vertical" />
+  <text x="400" y="350" class="txt-main">HK2T Screw Jack</text>
+
+  <rect x="325" y="380" width="150" height="50" class="bg-ground-vert" />
+  <text x="400" y="397" class="txt-main" fill="#1e3a8a">Lower Structure</text>
+  <text x="400" y="413" class="txt-small" fill="#1e3a8a">(Ground Reaction)</text>
+
+  <!-- Ground Line & Hashes -->
+  <path d="M 130 435 L 510 435" stroke="#4b5563" stroke-width="4" stroke-linecap="round"/>
+  <path d="M 150 435 L 140 445 M 170 435 L 160 445 M 190 435 L 180 445 M 210 435 L 200 445 M 230 435 L 220 445 M 250 435 L 240 445 M 270 435 L 260 445 M 290 435 L 280 445 M 310 435 L 300 445 M 330 435 L 320 445 M 350 435 L 340 445 M 370 435 L 360 445 M 390 435 L 380 445 M 410 435 L 400 445 M 430 435 L 420 445 M 450 435 L 440 445 M 470 435 L 460 445 M 490 435 L 480 445" stroke="#4b5563" stroke-width="2"/>
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</svg>

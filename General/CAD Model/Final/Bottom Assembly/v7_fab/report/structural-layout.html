@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IS-431: Structural Layout &amp; Fabrication — Height Adjustment</title>
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="stylesheet" href="../../../index.css">
+  <link rel="stylesheet" href="../../../components/table-of-content/table-of-content.css">
+  <script type="module" src="../../../components/image/image-component.js"></script>
+  <link rel="stylesheet" href="../../../components/scroll-to-top/scroll-to-top.css">
+  <script src="../../../components/scroll-to-top/scroll-to-top.js"></script>
+  <style>
+    .page-nav-row {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 32px;
+    }
+  </style>
+  <script src="/components/report-nav/report-nav.js" defer></script>
+</head>
+<body>
+  <div class="content">
+    <a href="../height-adjustment.html" class="back-btn">
+      <sl-button variant="default" size="medium">
+        <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+        Back to Height Adjustment
+      </sl-button>
+    </a>
+    <br>
+
+    <h2>Structural Layout &amp; Fabrication</h2>
+    <p>
+      This page details the physical construction of the custom telescopic
+      lift column — the materials selected, the wall thickness rationale,
+      the Delrin bearing interfaces, and the gusseted joints where
+      aluminium extrusion meets welded steel structure.
+    </p>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 1. COLUMN COMPONENTS                                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Column Components</h3>
+      <p>
+        The telescopic column comprises four primary elements:
+      </p>
+      <table style="width:100%; border-collapse:collapse; margin:16px 0;">
+        <thead>
+          <tr style="background:#f0f0f0;">
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Component</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Material</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Moving inner member</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>8080 aluminium extrusion</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Carries the upper body; slides vertically within the outer tube</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Guide surfaces</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Delrin (acetal) wear pads</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Low-friction sacrificial interface between inner and outer members</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Fixed outer sleeve</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Welded steel tube with integrated plate</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Provides structural envelope; resists lateral loads and overturning moments</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Axial lifting device</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>HK2T screw jack</strong> (travelling nut)</td>
+            <td style="padding:10px; border:1px solid #ddd;">Carries axial load; provides height adjustment; self-locking</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 2. SHS WALL THICKNESS                                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>SHS Wall Thickness (≥ 6 mm)</h3>
+      <p>
+        Large SHS members in the height-adjustment column are specified
+        with a minimum <strong>wall thickness of 6 mm</strong>. This
+        sizing is driven by:
+      </p>
+      <ul>
+        <li>
+          <strong>Lateral bending resistance:</strong> The outer tube
+          must resist significant bending moments from punch forces
+          applied at the torso height. Thicker walls increase the
+          second moment of area, reducing deflection under lateral
+          loading.
+        </li>
+        <li>
+          <strong>Weld joint integrity:</strong> Adequate wall thickness
+          ensures full-penetration welds at plate-to-tube intersections,
+          avoiding cold welds or burn-through that compromise joint strength.
+        </li>
+        <li>
+          <strong>Bearing surface quality:</strong> The inner face of
+          the outer tube serves as one of the bearing surfaces for the
+          Delrin wear pads. Sufficient wall thickness ensures this
+          surface remains flat and does not distort under localised loads.
+        </li>
+        <li>
+          <strong>Bolt connection capacity:</strong> Mounting plates and
+          brackets are bolted through the SHS wall; thicker walls provide
+          better thread engagement and bolt pull-through resistance.
+        </li>
+      </ul>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 3. DELRIN BEARING INTERFACES                          -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Delrin Bearing Interfaces</h3>
+      <p>
+        <strong>Delrin (acetal/polyoxymethylene)</strong> wear pads are used
+        as the bearing interface between the 8080 aluminium inner member
+        and the steel outer tube. Delrin was selected for several reasons:
+      </p>
+      <ul>
+        <li>
+          <strong>Low friction coefficient</strong> against both
+          aluminium and steel (~0.2–0.35 dry), enabling smooth sliding
+          without lubrication.
+        </li>
+        <li>
+          <strong>Self-lubricating:</strong> Delrin has inherent
+          lubricity, reducing maintenance requirements for the
+          height-adjustment mechanism.
+        </li>
+        <li>
+          <strong>Sacrificial wear:</strong> Delrin is softer than both
+          aluminium and steel, so wear concentrates on the replaceable
+          pads rather than on the structural members. Pads can be
+          replaced during maintenance without reworking the column.
+        </li>
+        <li>
+          <strong>Dimensional stability:</strong> Low moisture absorption
+          and good creep resistance ensure consistent clearances over time.
+        </li>
+        <li>
+          <strong>Easy machining:</strong> Delrin machines cleanly and
+          can be fabricated to precise dimensions with standard tooling.
+        </li>
+      </ul>
+      <p>
+        The wear pads are positioned at the top and bottom of the outer
+        tube, providing a <strong>wide moment arm</strong> for resisting
+        tilting of the inner member. This arrangement maximises lateral
+        stiffness while minimising the number of bearing surfaces.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 4. GUSSETED JOINTS                                    -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Gusseted Aluminium-to-Steel Joints</h3>
+      <p>
+        Where the 8080 aluminium extrusion meets the welded steel
+        structure, <strong>gusseted corner brackets</strong> are used
+        to create robust, stiff connections. These joints are critical
+        because:
+      </p>
+      <ul>
+        <li>
+          <strong>Dissimilar metals:</strong> Aluminium-to-steel joints
+          cannot be welded without specialised processes. Bolted connections
+          with gusset plates provide a reliable, reversible joint method.
+        </li>
+        <li>
+          <strong>Load transfer:</strong> Punching forces create large
+          bending moments at the column-to-base interface. Gussets
+          distribute these loads over a wider area, preventing stress
+          concentration at individual bolt holes.
+        </li>
+        <li>
+          <strong>Stiffness:</strong> Gusseted corners are significantly
+          stiffer than simple L-brackets, reducing angular deflection at
+          the joint under dynamic loading.
+        </li>
+        <li>
+          <strong>Distortion prevention:</strong> Welded plates in the
+          steel structure can distort due to residual welding stresses.
+          Gussets bridge across potential distortion zones, maintaining
+          alignment between the aluminium and steel components.
+        </li>
+      </ul>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 5. FABRICATION NOTES                                  -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Fabrication Notes</h3>
+      <p>
+        A <strong>light-shock service factor of approximately 1.5</strong>
+        was adopted because the robot may be adjusted in public
+        demonstration environments with minor bumps and start-stop
+        transients. Specific fabrication considerations:
+      </p>
+      <ul>
+        <li>
+          Welded plates are sized to avoid <strong>distortion</strong> —
+          thicker plates and staggered weld sequences are used where
+          flatness is critical.
+        </li>
+        <li>
+          Internal clearances between inner and outer members are
+          controlled to <strong>prevent jamming</strong> while maintaining
+          acceptable play for smooth operation.
+        </li>
+        <li>
+          The screw jack is mounted with <strong>alignment features</strong>
+          that ensure the jack's thrust axis remains coincident with the
+          column centreline, preventing eccentric loading.
+        </li>
+      </ul>
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="page-nav-row">
+      <a href="calculations-sizing.html">
+        <sl-button variant="default" size="medium">
+          <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+          Prev: Calculations & Sizing
+        </sl-button>
+      </a>
+      <a href="lift-structure-separation.html">
+        <sl-button variant="default" size="medium">
+          Next: Lift-Structure Separation
+          <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+        </sl-button>
+      </a>
+    </div>
+  </div>
+
+  <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
+    <sl-icon name="arrow-up" label="Scroll to top"></sl-icon>
+  </sl-button>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IS-431: Lift vs Structure Separation — Height Adjustment</title>
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="stylesheet" href="../../../index.css">
+  <link rel="stylesheet" href="../../../components/table-of-content/table-of-content.css">
+  <script type="module" src="../../../components/image/image-component.js"></script>
+  <link rel="stylesheet" href="../../../components/scroll-to-top/scroll-to-top.css">
+  <script src="../../../components/scroll-to-top/scroll-to-top.js"></script>
+  <style>
+    .page-nav-row {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 32px;
+    }
+  </style>
+  <script src="/components/report-nav/report-nav.js" defer></script>
+</head>
+<body>
+  <div class="content">
+    <a href="../height-adjustment.html" class="back-btn">
+      <sl-button variant="default" size="medium">
+        <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+        Back to Height Adjustment
+      </sl-button>
+    </a>
+    <br>
+
+    <h2>Lift vs Structure Separation</h2>
+    <p>
+      The defining design principle of BoxBunny's height-adjustment
+      subsystem is the <strong>separation of axial lifting from lateral
+      structural support</strong>. This page explains the load-path logic
+      behind this decision and the evolution from the earlier dual
+      linear-guide concept.
+    </p>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 1. THE PROBLEM                                        -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>The Problem: Combined Loading</h3>
+      <p>
+        The height-adjustment column sits directly within a major load
+        path beneath the upper body. During operation, it experiences
+        two fundamentally different types of loading:
+      </p>
+      <ol>
+        <li>
+          <strong>Axial (vertical) load:</strong> The weight of
+          everything above the column — torso frame, arms, padding,
+          sensors — acts downward through the column. This is a
+          steady, predictable load.
+        </li>
+        <li>
+          <strong>Lateral loads and overturning moments:</strong>
+          Punches create horizontal forces at the torso/head height.
+          These forces are transmitted through the column as lateral
+          shear and bending/overturning moments. These loads are
+          <em>dynamic, impulsive, and variable</em> in direction.
+        </li>
+      </ol>
+      <p>
+        If a single mechanism is required to handle both load types
+        simultaneously — as in a typical linear actuator — the
+        design becomes significantly more complex, expensive, and
+        prone to failure.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 2. THE SOLUTION: DECOUPLED LOAD PATHS                 -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Decoupled Load Paths</h3>
+      <p>
+        The key design decision is to treat the screw jack as
+        <strong>purely an axial lifting device</strong>, operating mainly
+        in compression. Lateral forces and overturning moments —
+        especially those from punching — are resisted by the surrounding
+        <strong>telescopic column structure</strong>.
+      </p>
+
+      <table style="width:100%; border-collapse:collapse; margin:16px 0;">
+        <thead>
+          <tr style="background:#f0f0f0;">
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Load Type</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Carried By</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Rationale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Axial (weight)</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Screw jack</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Screw jacks excel at carrying compressive axial loads; self-locking behaviour provides inherent position hold</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Lateral (punch forces)</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Telescopic column</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Steel tube-in-tube construction with Delrin bearings provides high lateral stiffness and moment resistance</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Overturning moment</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Telescopic column</strong></td>
+            <td style="padding:10px; border:1px solid #ddd;">Bearing surfaces at top and bottom of travel provide a wide moment arm to resist tilting</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h4>Why This Matters</h4>
+      <p>
+        This separation prevents <strong>side-loading of the screw jack</strong>,
+        which would otherwise:
+      </p>
+      <ul>
+        <li>Reduce screw-jack efficiency (increased friction from lateral contact)</li>
+        <li>Accelerate wear on the screw and nut surfaces</li>
+        <li>Create <strong>binding risk</strong> — the nut may jam on the screw if lateral forces push the components out of alignment</li>
+        <li>Require a more expensive screw jack rated for combined loading</li>
+      </ul>
+      <p>
+        By routing lateral loads around the jack and through the surrounding
+        column, the screw jack operates within its intended load envelope
+        (axial compression only), maximising efficiency and minimising wear.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 3. EVOLUTION FROM LINEAR GUIDE CONCEPT                -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Evolution from Dual Linear-Guide Concept</h3>
+      <p>
+        An earlier concept used <strong>two vertical linear rails at the
+        rear</strong> with a lift carriage plate. The screw jack was
+        positioned near the centreline, with a compliant interface to
+        tolerate misalignment between the jack's output and the
+        rail-guided carriage.
+      </p>
+      <p>
+        This concept established the <strong>correct engineering
+        principle</strong> — separating lift from lateral support. However,
+        it introduced practical issues:
+      </p>
+      <ul>
+        <li>
+          <strong>Too many precision-mounted components:</strong> Two
+          linear rails, four bearing blocks, a carriage plate, and a
+          compliant coupling between jack and carriage.
+        </li>
+        <li>
+          <strong>Tolerance sensitivity:</strong> The two rails must be
+          perfectly parallel. Any misalignment creates binding or uneven
+          block loading, which is difficult to achieve in a welded steel
+          structure.
+        </li>
+        <li>
+          <strong>Manufacturing complexity:</strong> Machined flat
+          mounting surfaces required for each rail on a welded structure.
+        </li>
+      </ul>
+      <p>
+        The project moved toward a <strong>custom telescopic column</strong>
+        using SHS-based steel structure, Delrin bearing interfaces, and a
+        modular 8080 aluminium inner member. This consolidated the guiding
+        function into a single structural unit, eliminating the rail
+        parallelism problem and reducing the number of precision components.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 4. STRUCTURAL MAST ANALOGY                            -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>The "Guided Structural Mast" Analogy</h3>
+      <p>
+        The final concept behaves less like an exposed actuator and more
+        like a <strong>guided structural mast</strong>. The outer welded
+        tube provides the structural envelope; the inner 8080 extrusion
+        slides within it on Delrin wear pads; and the screw jack
+        operates inside the column, hidden from view and protected from
+        external disturbances.
+      </p>
+      <p>
+        This arrangement also provides a <strong>clean aesthetic</strong> —
+        the mechanism is enclosed rather than exposed, which is important
+        for a robot that operates in close proximity to users and must
+        project a professional, safe appearance.
+      </p>
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="page-nav-row">
+      <a href="structural-layout.html">
+        <sl-button variant="default" size="medium">
+          <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+          Prev: Structural Layout
+        </sl-button>
+      </a>
+      <a href="electrical-control.html">
+        <sl-button variant="default" size="medium">
+          Next: Electrical & Control
+          <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+        </sl-button>
+      </a>
+    </div>
+  </div>
+
+  <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
+    <sl-icon name="arrow-up" label="Scroll to top"></sl-icon>
+  </sl-button>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IS-431: Calculations &amp; Sizing — Height Adjustment</title>
+  <link rel="icon" href="../../../favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="stylesheet" href="../../../index.css">
+  <link rel="stylesheet" href="../../../components/table-of-content/table-of-content.css">
+  <script type="module" src="../../../components/image/image-component.js"></script>
+  <link rel="stylesheet" href="../../../components/scroll-to-top/scroll-to-top.css">
+  <script src="../../../components/scroll-to-top/scroll-to-top.js"></script>
+  <style>
+    .page-nav-row {
+      display: flex; justify-content: space-between; align-items: center; margin-top: 32px;
+    }
+  </style>
+  <script src="/components/report-nav/report-nav.js" defer></script>
+</head>
+<body>
+  <div class="content">
+    <a href="../height-adjustment.html" class="back-btn">
+      <sl-button variant="default" size="medium">
+        <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+        Back to Height Adjustment
+      </sl-button>
+    </a>
+    <br>
+
+    <h2>Calculations &amp; Sizing</h2>
+    <p>
+      This page presents the engineering calculations that size the
+      height-adjustment subsystem: from the payload and service factor
+      to the screw-jack selection, linear speed requirement, and
+      motor input specification.
+    </p>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 1. PAYLOAD & SERVICE FACTOR                           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Payload &amp; Service Factor</h3>
+      <p>
+        The estimated payload — the mass of everything above the
+        height-adjustment column — is approximately <strong>10 kg</strong>.
+        This includes the torso frame, arms, padding, sensors, and
+        mounting hardware.
+      </p>
+      <div style="background:#f4f7fa; border-left:4px solid #3b82f6; padding:16px 20px; margin:20px 0; border-radius:0 8px 8px 0;">
+        <p style="font-family: serif; font-size: 1.15rem; text-align: center; margin: 8px 0;">
+          W<sub>payload</sub> = m &times; g = 10 kg &times; 9.81 m/s&sup2; &asymp; 98.1 N
+        </p>
+      </div>
+      <p>
+        A <strong>light-shock service factor of 1.5</strong> is applied
+        to account for:
+      </p>
+      <ul>
+        <li>Minor bumps and transients during height adjustment in demo environments</li>
+        <li>Uncertainty in actual mass distribution after final assembly</li>
+        <li>Dynamic amplification from start/stop acceleration of the screw jack</li>
+      </ul>
+      <div style="background:#f4f7fa; border-left:4px solid #3b82f6; padding:16px 20px; margin:20px 0; border-radius:0 8px 8px 0;">
+        <p style="font-family: serif; font-size: 1.15rem; text-align: center; margin: 8px 0;">
+          F<sub>design</sub> = W<sub>payload</sub> &times; SF = 98.1 N &times; 1.5 &asymp; 147 N
+        </p>
+        <p style="font-size: 0.9rem; color: #555;">
+          This is the design axial load for screw-jack selection.
+          Lateral loads from punching are carried by the telescopic
+          column, not the screw jack.
+        </p>
+      </div>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 2. STROKE & SPEED                                     -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Stroke &amp; Speed Requirement</h3>
+      <p>
+        The required vertical stroke is <strong>400 mm</strong>, covering
+        the head and torso target zone repositioning across the intended
+        user height range.
+      </p>
+      <p>
+        The engineering target for adjustment time is approximately
+        <strong>32 seconds</strong> over the full 400 mm stroke. This
+        yields a required linear speed:
+      </p>
+      <div style="background:#f4f7fa; border-left:4px solid #3b82f6; padding:16px 20px; margin:20px 0; border-radius:0 8px 8px 0;">
+        <p style="font-family: serif; font-size: 1.15rem; text-align: center; margin: 8px 0;">
+          v<sub>linear</sub> = 400 mm / 32 s = <strong>12.5 mm/s</strong>
+        </p>
+        <p style="font-size: 0.9rem; color: #555;">
+          Equivalent to approximately 0.75 m/min — consistent with
+          typical screw-jack output speeds at moderate motor RPM.
+        </p>
+      </div>
+      <p>
+        This speed is <strong>practically sufficient</strong> for a
+        setup-time operation. Users adjust height between training
+        sessions, not during rounds, so a 32-second full-stroke time
+        is acceptable. An aspirational user-preference target of
+        ~10 seconds has been noted for future motor-control optimisation.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 3. SCREW JACK SELECTION                               -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Screw Jack Selection: HK2T</h3>
+      <p>
+        The <strong>HK2T travelling-nut screw jack</strong> was selected
+        as the axial lifting device. In a travelling-nut configuration,
+        the screw rotates while the nut moves linearly — the nut is
+        connected to the moving inner member of the telescopic column.
+      </p>
+      <table style="width:100%; border-collapse:collapse; margin:16px 0;">
+        <thead>
+          <tr style="background:#f0f0f0;">
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Parameter</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Model</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>HK2T</strong></td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Configuration</td>
+            <td style="padding:10px; border:1px solid #ddd;">Travelling nut (screw rotates, nut translates)</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Design load</td>
+            <td style="padding:10px; border:1px solid #ddd;">~147 N (including 1.5× service factor)</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Stroke</td>
+            <td style="padding:10px; border:1px solid #ddd;">400 mm</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Key property</td>
+            <td style="padding:10px; border:1px solid #ddd;"><strong>Self-locking</strong> — holds position without motor power</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 4. MOTOR INPUT REQUIREMENT                            -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Motor Input Requirement</h3>
+      <p>
+        Based on the screw-jack lead and the required linear speed of
+        12.5 mm/s, the back-calculated motor speed requirement at the
+        jack input shaft is approximately:
+      </p>
+      <div style="background:#f4f7fa; border-left:4px solid #3b82f6; padding:16px 20px; margin:20px 0; border-radius:0 8px 8px 0;">
+        <p style="font-family: serif; font-size: 1.15rem; text-align: center; margin: 8px 0;">
+          n<sub>motor</sub> &asymp; <strong>800 rpm</strong>
+        </p>
+        <p style="font-size: 0.9rem; color: #555;">
+          This is the input speed required at the screw-jack worm gear
+          shaft to produce the target 12.5 mm/s output. The actual
+          value depends on the jack's internal gear ratio and screw lead.
+        </p>
+      </div>
+      <p>
+        At 800 rpm, the motor torque requirement is modest because the
+        screw-jack's internal worm gear provides significant torque
+        multiplication. The motor-sizing logic therefore focuses on
+        <strong>speed capability</strong> rather than torque.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 5. SELF-LOCKING & SAFETY                              -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Self-Locking Behaviour &amp; Safety</h3>
+      <p>
+        The self-locking nature of the screw jack provides <strong>inherent
+        fail-safe behaviour</strong>:
+      </p>
+      <ul>
+        <li>
+          The column <strong>holds its position</strong> even without
+          motor power — if the motor is de-energised or loses power
+          during training, the robot remains at its set height.
+        </li>
+        <li>
+          No external brake or locking mechanism is required, reducing
+          complexity and eliminating potential brake-failure scenarios.
+        </li>
+        <li>
+          The self-locking property also means the column
+          <strong>does not bounce or oscillate</strong> under punching
+          loads — the screw cannot be back-driven by axial impact forces.
+        </li>
+      </ul>
+      <p>
+        This fail-safe characteristic was a significant factor in the
+        selection of a screw jack over powered alternatives (electric
+        actuators, pneumatic cylinders) that would require active holding
+        to maintain position.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 6. REQUIREMENT TRACEABILITY                           -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Requirement Traceability</h3>
+      <p>
+        The calculations on this page verify that the mechanical design
+        meets system-level requirement <strong>RM-5 (Height
+        Adjustability)</strong>: the robot must accommodate users of
+        different heights by providing a vertical adjustment range of
+        at least 400 mm within an acceptable setup time.
+      </p>
+      <ul>
+        <li>
+          The <strong>HK2T screw jack</strong> is rated well above the
+          147 N design load, providing adequate margin for the 10 kg
+          payload plus service factor.
+        </li>
+        <li>
+          The <strong>self-locking property</strong> eliminates the need
+          for external brakes or holding mechanisms, satisfying
+          fail-safe requirements without additional hardware.
+        </li>
+        <li>
+          The <strong>12.5 mm/s linear speed</strong> at 800 rpm motor
+          input delivers the full 400 mm stroke within 32 seconds,
+          meeting the engineering target for setup-time operations.
+        </li>
+      </ul>
+      <p>
+        The corresponding verification method — loaded stroke test with
+        timing and positional accuracy measurement — is described in the
+        <a href="../../robot-mechanism.html">Robot Mechanism</a>
+        verification plan. Electrical motor integration and speed
+        control are documented separately by the upper-assembly agent.
+      </p>
+    </div>
+
+    <sl-divider></sl-divider>
+
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <!-- 7. SUMMARY TABLE                                      -->
+    <!-- ═══════════════════════════════════════════════════════ -->
+    <div>
+      <h3>Sizing Summary</h3>
+      <table style="width:100%; border-collapse:collapse; margin:16px 0;">
+        <thead>
+          <tr style="background:#f0f0f0;">
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Parameter</th>
+            <th style="padding:10px; border:1px solid #ddd; text-align:left;">Value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Payload mass</td>
+            <td style="padding:10px; border:1px solid #ddd;">~10 kg</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Service factor</td>
+            <td style="padding:10px; border:1px solid #ddd;">1.5 (light shock)</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Design lifting force</td>
+            <td style="padding:10px; border:1px solid #ddd;">~147 N</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Stroke</td>
+            <td style="padding:10px; border:1px solid #ddd;">400 mm</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Target adjustment time</td>
+            <td style="padding:10px; border:1px solid #ddd;">~32 s (full stroke)</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Required linear speed</td>
+            <td style="padding:10px; border:1px solid #ddd;">12.5 mm/s</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Motor input speed</td>
+            <td style="padding:10px; border:1px solid #ddd;">~800 rpm</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">Screw jack model</td>
+            <td style="padding:10px; border:1px solid #ddd;">HK2T (travelling nut, self-locking)</td>
+          </tr>
+          <tr>
+            <td style="padding:10px; border:1px solid #ddd;">SHS wall thickness</td>
+            <td style="padding:10px; border:1px solid #ddd;">≥ 6 mm</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="page-nav-row">
+      <a href="concept-generation.html">
+        <sl-button variant="default" size="medium">
+          <sl-icon slot="prefix" name="arrow-left"></sl-icon>
+          Prev: Concept Generation
+        </sl-button>
+      </a>
+      <a href="structural-layout.html">
+        <sl-button variant="default" size="medium">
+          Next: Structural Layout
+          <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+        </sl-button>
+      </a>
+    </div>
+  </div>
+
+  <sl-button class="scroll-to-top" variant="primary" size="medium" circle onclick="scrollToTop()">
+    <sl-icon name="arrow-up" label="Scroll to top"></sl-icon>
+  </sl-button>
+</body>
+</html>
