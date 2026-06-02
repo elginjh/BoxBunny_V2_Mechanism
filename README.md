@@ -23,7 +23,7 @@ Contains legacy V1 project files, procurement details, and comprehensive enginee
 - **`Reports/Interim Report/report appendix b/jeanette appendix b.txt`**: A detailed text export of the engineering calculations and concept generation matrices. This is required reading for understanding:
   - **Upper Mechanism:** The justification for the 2DOF (pitch/yaw) actuator, including torque, inertia, and aerodynamic drag calculations for the training sticks.
   - **Lower Mechanism:** The rationale for decoupling the footwork motion into a linear rail (forward/backward) and a slewing bearing (rotation) over omnidirectional wheels, alongside motor sizing and selection matrices.
-- **`V1 (EG3301R)/`**: Legacy files from the first iteration of the BoxBunny project, including reference CAD for components such as the HC-SR04 ultrasonic sensor.
+- **`V1 (EG3301R)/`**: Legacy files from the first iteration of the BoxBunny project.
 
 ## 2. Mandatory Pre-Operation Procedures
 
